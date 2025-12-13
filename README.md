@@ -44,4 +44,5 @@ This project is beginner-friendly and easy to customize.
 ## 🎅 Merry Christmas!
 
 Made with ❤️ for the holiday season.
+Thank you for viewing my project 🎄
 Feel free to improve, remix, and share!
