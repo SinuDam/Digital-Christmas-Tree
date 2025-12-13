@@ -3,126 +3,120 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Animated Christmas Tree</title>
-
+  <title>Merry Christmas!!!</title>
   <style>
     :root {
-      --bg: #081426;
-      --snow: #eef6ff;
-      --tree: #0b6b2b;
-      --accent: #ffd166;
-      --garland: #b71c1c;
-
-      --padding: 24px;
-      --tree-width: 320px;
-
-      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+      --bg: #081225;
+      --ground: #06111a;
+      --tree-green: #0b6b2f;
+      --star: #ffd86b;
+      --trunk: #6b3f2b;
     }
 
     html, body {
       height: 100%;
       margin: 0;
-    }
-
-    body {
-      background: radial-gradient(
-        1200px 600px at 10% 10%,
-        #0d2746 0%,
-        var(--bg) 35%
-      );
-      color: white;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, 'Helvetica Neue', Arial;
+      background: linear-gradient(180deg, var(--bg) 0%, #071022 60%, #041018 100%);
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: var(--padding);
-    }
-
-    .card {
-      width: min(880px, 100%);
-      background: linear-gradient(
-        180deg,
-        rgba(255,255,255,0.03),
-        rgba(0,0,0,0.05)
-      );
-      border-radius: 16px;
-      padding: 28px;
-      box-shadow: 0 10px 30px rgba(3,12,30,0.6);
-      display: flex;
-      gap: 24px;
-      align-items: center;
-    }
-
-    .left {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    h1 {
-      margin: 0;
-      font-size: 20px;
-    }
-
-    p {
-      margin: 0;
-      opacity: 0.9;
-    }
-
-    .controls {
-      margin-top: 10px;
-      display: flex;
-      gap: 8px;
-    }
-
-    button {
-      background: transparent;
-      border: 1px solid rgba(255,255,255,0.12);
-      color: inherit;
-      padding: 8px 12px;
-      border-radius: 10px;
-      cursor: pointer;
+      color: #fff;
     }
 
     .stage {
-      width: var(--tree-width);
-      height: 520px;
-      position: relative;
-      display: flex;
-      align-items: flex-end;
-      justify-content: center;
+      width: 100%;
+      max-width: 1000px;
+      padding: 30px;
+      box-sizing: border-box;
     }
 
-    .snow {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
+    .card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius: 18px;
+      padding: 28px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+      position: relative;
       overflow: hidden;
     }
 
-    .flake {
+    #snow {
       position: absolute;
-      top: -10px;
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--snow);
-      opacity: 0.9;
-      animation: fall linear infinite;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
     }
 
-    @keyframes fall {
-      to {
-        transform: translateY(620px);
-        opacity: 0.1;
-      }
+    h1 {
+      margin: 0 0 12px;
+      font-size: 24px;
+      letter-spacing: 0.6px;
     }
-    
+
+    .controls {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .controls button {
+      background: #0e1a2b;
+      border: 1px solid rgba(255,255,255,0.03);
+      color: #fff;
+      padding: 8px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .scene {
+      display: flex;
+      gap: 30px;
+      align-items: flex-end;
+      justify-content: center;
+      min-height: 420px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .tree-wrap {
+      width: 360px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .star {
+      width: 0;
+      height: 0;
+      border-left: 14px solid transparent;
+      border-right: 14px solid transparent;
+      border-bottom: 28px solid var(--star);
+      position: relative;
+      top: -12px;
+      filter: drop-shadow(0 4px 8px rgba(255,200,80,0.15));
+      transform: rotate(0deg);
+      animation: starRotate 8s linear infinite;
+    }
+
+    .star::after {
+      content: '';
+      position: absolute;
+      left: -14px;
+      top: 6px;
+      width: 0;
+      height: 0;
+      border-left: 14px solid transparent;
+      border-right: 14px solid transparent;
+      border-top: 28px solid var(--star);
+    }
+
     .tree {
       position: relative;
       width: 260px;
-      transform-origin: center bottom;
-      animation: sway 6s ease-in-out infinite;
+      margin-top: -14px;
     }
 
     .layer {
@@ -130,152 +124,330 @@
       height: 0;
       border-left: 120px solid transparent;
       border-right: 120px solid transparent;
-      border-bottom: 120px solid var(--tree);
-      margin-bottom: -30px;
+      border-bottom: 96px solid var(--tree-green);
+      margin: -18px auto;
+      position: relative;
+      filter: drop-shadow(0 8px 14px rgba(0,0,0,0.5));
+      transition: transform 0.5s;
     }
 
-    .layer:nth-child(1) {
-      border-left-width: 140px;
-      border-right-width: 140px;
-      border-bottom-width: 160px;
-    }
-
-    .layer:nth-child(2) {
-      border-bottom-width: 140px;
-    }
-
-    .layer:nth-child(3) {
-      border-bottom-width: 110px;
-    }
-
-    @keyframes sway {
-      0%, 100% { transform: rotate(-0.8deg); }
-      50% { transform: rotate(0.8deg); }
-    }
-
-    .trunk {
-      width: 46px;
-      height: 56px;
-      background: #6b3b21;
-      border-radius: 6px;
-      margin: 4px auto 0;
-    }
-
-    .star {
-      position: absolute;
-      top: -36px;
-      left: 50%;
-      transform: translateX(-50%);
-    }
+    .layer:nth-child(1) { border-bottom-width: 130px; border-left-width: 150px; border-right-width: 150px; }
+    .layer:nth-child(2) { border-bottom-width: 110px; border-left-width: 138px; border-right-width: 138px; }
+    .layer:nth-child(3) { border-bottom-width: 92px; border-left-width: 125px; border-right-width: 125px; }
+    .layer:nth-child(4) { border-bottom-width: 74px; border-left-width: 110px; border-right-width: 110px; }
 
     .light {
       position: absolute;
-      width: 10px;
-      height: 10px;
+      width: 12px;
+      height: 12px;
       border-radius: 50%;
-      animation: blink 2s infinite;
+      border: 2px solid rgba(255,255,255,0.08);
     }
 
-    @keyframes blink {
-      0%, 100% { transform: scale(0.8); opacity: 0.6; }
-      50% { transform: scale(1.4); opacity: 1; }
+    .light.yellow { background: #ffd86b; box-shadow: 0 6px 18px rgba(255,216,107,0.28); }
+    .light.red { background: #ff6b6b; box-shadow: 0 6px 18px rgba(255,107,107,0.28); }
+    .light.blue { background: #6fb3ff; box-shadow: 0 6px 18px rgba(111,179,255,0.22); }
+    .light.green { background: #8cffb3; box-shadow: 0 6px 18px rgba(140,255,179,0.18); }
+
+    @keyframes twinkle {
+      0% { transform: scale(0.8); opacity: 0.65; }
+      50% { transform: scale(1.25); opacity: 1; }
+      100% { transform: scale(0.9); opacity: 0.8; }
+    }
+
+    @keyframes starRotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    @keyframes treeShake {
+      0%, 100% { transform: translateX(0); }
+      10%, 30%, 50%, 70%, 90% { transform: translateX(-2px); }
+      20%, 40%, 60%, 80% { transform: translateX(2px); }
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(10px); }
+      100% { opacity: 0.9; transform: translateY(0); }
+    }
+
+    .shooting-star {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: #fff;
+      border-radius: 50%;
+      box-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff;
+      animation: shoot 3s linear infinite;
+      z-index: 1;
+    }
+
+    @keyframes shoot {
+      0% {
+        transform: translateX(0) translateY(0) rotate(45deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateX(-300px) translateY(300px) rotate(45deg);
+        opacity: 0;
+      }
     }
 
     .orn {
       position: absolute;
+      border-radius: 50%;
       width: 18px;
       height: 18px;
-      border-radius: 50%;
-      animation: floatY 4s ease-in-out infinite;
+      background: linear-gradient(180deg, rgba(255,255,255,0.12), rgba(0,0,0,0.2));
+      box-shadow: inset 0 2px 4px rgba(255,255,255,0.06);
     }
 
-    @keyframes floatY {
-      0% { transform: translateY(0); }
-      50% { transform: translateY(-6px); }
-      100% { transform: translateY(0); }
-    }
-    
-    @media (max-width: 700px) {
-      .card {
-        flex-direction: column;
-      }
+    .trunk {
+      width: 60px;
+      height: 72px;
+      background: linear-gradient(180deg, var(--trunk), #482c20);
+      border-radius: 6px;
+      margin-top: 8px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.5);
     }
 
-    .note {
-      font-size: 12px;
-      opacity: 0.7;
+    .presents {
+      display: flex;
+      gap: 8px;
+      margin-top: 14px;
+      width: 100px;
+    }
+
+    .present {
+      width: 48px;
+      height: 36px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: #fff;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    .present:hover {
+      transform: scale(1.1);
+    }
+
+    .message {
+      margin-top: 18px;
+      text-align: center;
+      opacity: 0.9;
+    }
+
+    @media (max-width: 720px) {
+      .scene { flex-direction: column; }
+      .tree-wrap { width: 260px; }
     }
   </style>
 </head>
-
 <body>
-
-  <div class="card">
-    <div class="left">
-      <h1>Animated Christmas Tree</h1>
-      <p>A simple festive tree made with HTML, CSS and JavaScript.</p>
-
+  <div class="stage">
+    <div class="card">
+      <canvas id="snow"></canvas>
+      <center><h1>Digital Christmas Tree</h1></center>
+      <center><h3>Made by Sinura Perea</h3></center>
       <div class="controls">
+        <button id="toggleTwinkle">Toggle Twinkle</button>
         <button id="toggleSnow">Toggle Snow</button>
-        <button id="toggleLights">Toggle Lights</button>
+        <button id="toggleMusic">🎵 Toggle Music</button>
+        <button id="randomize">Randomize Lights</button>
+        <button id="downloadPNG">Download Image (PNG)</button>
       </div>
-
-      <p class="note">
-        Save this file as <code>christmas-tree.html</code> and open it in a browser.
-      </p>
-    </div>
-
-    <div class="stage" id="stage">
-      <div class="snow" id="snow"></div>
-
-      <div class="tree">
-        <div class="star">⭐</div>
-
-        <div class="layer"></div>
-        <div class="layer"></div>
-        <div class="layer"></div>
-
-        <div class="trunk"></div>
-
-        <!-- Lights -->
-        <div class="light" style="left:40%; top:55%; background:#ffd166"></div>
-        <div class="light" style="left:60%; top:50%; background:#ff5d8f"></div>
-
-        <!-- Ornaments -->
-        <div class="orn" style="left:50%; top:45%; background:#e76f51"></div>
+      <div class="scene">
+        <div class="tree-wrap" id="treeWrap">
+          <div class="star" id="star"></div>
+          <div class="tree" id="tree">
+            <div class="layer" data-layer="1"></div>
+            <div class="layer" data-layer="2"></div>
+            <div class="layer" data-layer="3"></div>
+            <div class="layer" data-layer="4"></div>
+          </div>
+          <div class="trunk"></div>
+          <div class="presents">
+            <div class="present" style="background:#e74c3c">Sinu</div>
+            <div class="present" style="background:#2980b9">Dam</div>
+          </div>
+          <div class="message">Merry Christmas! 🎁✨</div>
+        </div>
       </div>
     </div>
   </div>
 
   <script>
-    const snow = document.getElementById("snow");
-    let snowEnabled = true;
+    const snowCanvas = document.getElementById('snow');
+    const ctx = snowCanvas.getContext('2d');
+    let snowParticles = [];
+    let snowOn = true;
 
-    function createSnowflake() {
-      const flake = document.createElement("div");
-      flake.className = "flake";
-      flake.style.left = Math.random() * 100 + "%";
-      flake.style.animationDuration = (6 + Math.random() * 6) + "s";
-      snow.appendChild(flake);
+    function resizeCanvas() {
+      snowCanvas.width = document.querySelector('.card').clientWidth;
+      snowCanvas.height = document.querySelector('.card').clientHeight;
     }
 
-    for (let i = 0; i < 25; i++) {
-      createSnowflake();
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    function createSnow(count = 80) {
+      snowParticles = [];
+      for (let i = 0; i < count; i++) {
+        snowParticles.push({
+          x: Math.random() * snowCanvas.width,
+          y: Math.random() * snowCanvas.height,
+          r: Math.random() * 2 + 0.6,
+          d: Math.random() * 1 + 0.2
+        });
+      }
     }
 
-    document.getElementById("toggleSnow").onclick = () => {
-      snowEnabled = !snowEnabled;
-      snow.style.display = snowEnabled ? "block" : "none";
-    };
+    createSnow(90);
 
-    let lightsOn = true;
-    document.getElementById("toggleLights").onclick = () => {
-      lightsOn = !lightsOn;
-      document.querySelectorAll(".light").forEach(light => {
-        light.style.animationPlayState = lightsOn ? "running" : "paused";
+    function drawSnow() {
+      ctx.clearRect(0, 0, snowCanvas.width, snowCanvas.height);
+      ctx.fillStyle = 'rgba(255,255,255,0.85)';
+      snowParticles.forEach(p => {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fill();
       });
-    };
-  </script>
+    }
 
+    function updateSnow() {
+      snowParticles.forEach(p => {
+        p.y += p.d + 0.2;
+        p.x += Math.sin(p.y / 40) * 0.4;
+        if (p.y > snowCanvas.height) { p.y = -10; p.x = Math.random() * snowCanvas.width; }
+      });
+    }
+
+    let snowLoop = null;
+    function startSnow() { if (!snowLoop) snowLoop = setInterval(() => { drawSnow(); updateSnow(); }, 40); }
+    function stopSnow() { clearInterval(snowLoop); snowLoop = null; ctx.clearRect(0, 0, snowCanvas.width, snowCanvas.height); }
+
+    startSnow();
+
+    const tree = document.getElementById('tree');
+    const colors = ['yellow','red','blue','green'];
+
+    function placeLights() {
+      tree.querySelectorAll('.light, .orn').forEach(n => n.remove());
+      const layers = [...tree.querySelectorAll('.layer')];
+      layers.forEach((layer, idx) => {
+        const count = 6 - idx;
+        for (let i = 0; i < count; i++) {
+          const el = document.createElement('div');
+          el.className = 'light ' + colors[Math.floor(Math.random() * colors.length)];
+          el.style.left = `${Math.random() * 80 + 10}%`;
+          el.style.top = `${Math.random() * 70 + 10}px`;
+          el.style.animation = `twinkle ${1.4 + Math.random() * 1.2}s ease-in-out ${Math.random()}s infinite`;
+          layer.appendChild(el);
+        }
+
+        const orn = document.createElement('div');
+        orn.className = 'orn';
+        orn.style.width = '18px';
+        orn.style.height = '18px';
+        orn.style.left = `${Math.random() * 20 + 40}%`;
+        orn.style.top = `${Math.random() * 40 + 30}px`;
+        layer.appendChild(orn);
+      });
+    }
+
+    setTimeout(placeLights, 120);
+
+    let twinkleOn = true;
+    document.getElementById('toggleTwinkle').onclick = () => {
+      twinkleOn = !twinkleOn;
+      document.querySelectorAll('.light').forEach(l => l.style.animationPlayState = twinkleOn ? 'running' : 'paused');
+    };
+
+    document.getElementById('toggleSnow').onclick = () => {
+      snowOn = !snowOn;
+      if (snowOn) startSnow(); else stopSnow();
+    };
+
+    document.getElementById('randomize').onclick = () => placeLights();
+
+    document.getElementById('downloadPNG').onclick = () => alert('For full download, use browser screenshot or html2canvas library.');
+
+    document.getElementById('treeWrap').onclick = () => {
+      const tree = document.getElementById('tree');
+      tree.style.animation = 'treeShake 0.6s ease-in-out';
+      setTimeout(() => tree.style.animation = '', 600);
+    };
+
+    const messages = [
+      "🎄 Merry Christmas! May your holidays be filled with joy and laughter! 🎅",
+      "🎁 Happy Holidays! Wishing you peace, love, and all the best in the new year! ✨",
+      "❄️ Season's Greetings! May your days be merry and bright! 🌟",
+      "🎅 Ho Ho Ho! Santa's got a special gift just for you - happiness! 🎁"
+    ];
+
+    document.querySelectorAll('.present').forEach((present, index) => {
+      present.onclick = () => {
+        const message = document.querySelector('.message');
+        message.textContent = messages[index % messages.length];
+        message.style.animation = 'none';
+        setTimeout(() => message.style.animation = 'fadeIn 0.5s ease-in-out', 10);
+      };
+    });
+
+    window.addEventListener('resize', () => { setTimeout(placeLights, 120); resizeCanvas(); });
+
+    let musicPlaying = false;
+    const audio = new Audio();
+    audio.loop = true;
+    audio.volume = 0.3;
+
+    document.getElementById('toggleMusic').onclick = () => {
+      if (!audio.src) {
+        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        const oscillator = audioContext.createOscillator();
+        const gainNode = audioContext.createGain();
+
+        oscillator.connect(gainNode);
+        gainNode.connect(audioContext.destination);
+
+        oscillator.frequency.setValueAtTime(523.25, audioContext.currentTime); // C5
+        gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+
+        oscillator.start();
+        setTimeout(() => oscillator.stop(), 200);
+
+        alert('🎵 For real Christmas music, replace the audio src with a holiday music URL!');
+        return;
+      }
+
+      if (musicPlaying) {
+        audio.pause();
+        musicPlaying = false;
+      } else {
+        audio.play();
+        musicPlaying = true;
+      }
+    };
+
+    function createShootingStar() {
+      const star = document.createElement('div');
+      star.className = 'shooting-star';
+      star.style.left = Math.random() * 100 + '%';
+      star.style.top = Math.random() * 50 + '%';
+      document.body.appendChild(star);
+
+      setTimeout(() => star.remove(), 3000);
+    }
+
+    setInterval(() => {
+      if (Math.random() < 0.3) {
+        createShootingStar();
+      }
+    }, Math.random() * 10000 + 5000);
+  </script>
 </body>
 </html>
