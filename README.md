@@ -5,6 +5,8 @@ It includes falling snow, blinking lights, ornaments, a glowing star, and gentle
 
 This project is beginner-friendly and easy to customize.
 
+<img align="right" alt="cover_gif" width="400" src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExc2dmY3YyMTJjMzVlNXlscHQ4cHhhdjNtZDA4bmlyNXc0bnVvcWM2cCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/du3J3cXyzhj75IOgvA/giphy.gif">
+
 ---
 
 ## ✨ Features
